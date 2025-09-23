@@ -31,7 +31,7 @@ library(tibble)
 # 2. Data Download
 ##########################################
 # Set BOLD API key
-bold.apikey("59EC87C3-929D-4F6A-814A-FDA1D46C333C")
+bold.apikey("XXXXXXXXX-XXXX-XXXX-XXXXX-XXXXXXXXXXXX")
 
 # Load list of process IDs from CSV file
 processids <- read.csv2("seqs_ids.csv")
