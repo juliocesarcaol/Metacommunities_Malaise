@@ -5,6 +5,8 @@
 # --- Load required libraries ---
 library(iNEXT)     # For diversity analysis with Hill numbers
 library(ggplot2)   # For plotting
+library(patchwork)
+
 
 # --- Input data ---
 # Assumes `tabla_abund` is already loaded in your environment
