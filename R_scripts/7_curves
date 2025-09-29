@@ -1,0 +1,74 @@
+##############################################
+# Accumulation Curves with Hill Numbers
+##############################################
+
+# --- Load required libraries ---
+library(iNEXT)     # For diversity analysis with Hill numbers
+library(ggplot2)   # For plotting
+
+# --- Input data ---
+# Assumes `tabla_abund` is already loaded in your environment
+# Format:
+#   - Rows = localities
+#   - Columns = species abundances
+#   - First column = locality name/ID
+
+# --- Convert abundance table into a list ---
+# Each element of the list corresponds to one locality
+# iNEXT requires vectors of abundances (not data frames)
+abund_list <- split(tabla_abund[,-1], tabla_abund$locality)
+abund_list <- lapply(abund_list, function(x) as.numeric(x))
+
+# ============================================================
+# 1) Hill numbers q = 0 (species richness)
+# ============================================================
+
+out <- iNEXT(abund_list, q = 0, datatype = "abundance")
+
+
+# ============================================================
+# 2) Hill numbers q = 1 (Shannon diversity)
+# ============================================================
+
+out_q1 <- iNEXT(abund_list, q = 1, datatype = "abundance")
+
+# ============================================================
+# 3) Hill numbers q = 2 (Simpson diversity)
+# ============================================================
+
+out_q2 <- iNEXT(abund_list, q = 2, datatype = "abundance")
+
+
+# --- Individual plots (already created) ---
+p0 <- ggiNEXT(out, type = 1) +
+  theme_minimal() +
+  labs(
+    subtitle = "q = 0 (Species richness)",
+    x = "Number of individuals sampled",
+    y = "Diversity"
+  )
+
+p1 <- ggiNEXT(out_q1, type = 1) +
+  theme_minimal() +
+  labs(
+    subtitle = "q = 1 (Shannon diversity)",
+    x = "Number of individuals sampled",
+    y = "Diversity"
+  )
+
+p2 <- ggiNEXT(out_q2, type = 1) +
+  theme_minimal() +
+  labs(
+    subtitle = "q = 2 (Simpson diversity)",
+    x = "Number of individuals sampled",
+    y = "Diversity"
+  )
+
+# --- Combine plots in a grid ---
+(p0 | p1 | p2) + 
+  plot_annotation(
+    title = "Accumulation Curves by Locality",
+    subtitle = "Hill numbers q = 0, q = 1, q = 2"
+  )
+
+
