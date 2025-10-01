@@ -1,0 +1,189 @@
+---
+title: "Hierarchical Visualization with SunburstR"
+author: "Julio Carrión"
+date: "2025-10-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+This document demonstrates how to generate hierarchical sunburst visualizations from biodiversity data.
+The dataset includes BIN identifiers, localities, biomes, ecoregions, and full taxonomy.
+
+## Required Libraries
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(plotly)
+library(sunburstR)
+```
+
+## Load Data
+
+```{r}
+# Load the combined dataset
+combined_data <- readRDS("combined_data.rds")  
+# Expected columns: bin_uri, locality, biome, ecoregion, kingdom, phylum, class, order, family, genus, species
+```
+
+## Create Taxonomic Hierarchy
+
+```{r}
+# Create a column with the full taxonomic hierarchy
+combined_data <- combined_data %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-"))
+```
+
+## Costa Rica - Cocos Island
+
+```{R}
+tabla_sunburst_IslaCocos <- combined_data %>%
+  filter(locality == "IslaCocos") %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-")) %>%
+  group_by(path) %>%
+  summarise(count = n(), .groups = "drop")
+
+# Plot sunburst
+sunburst(tabla_sunburst_IslaCocos, count = TRUE)
+```
+
+## Costa Rica - Guancaste
+
+```{R}
+tabla_sunburst_Guanacaste <- combined_data %>%
+  filter(locality == "Guanacaste") %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-")) %>%
+  group_by(path) %>%
+  summarise(count = n(), .groups = "drop")
+
+# Plot sunburst
+sunburst(tabla_sunburst_Guanacaste, count = TRUE)
+```
+
+
+
+
+## Costa Rica - Quetzales
+
+```{R}
+tabla_sunburst_Quetzales <- combined_data %>%
+  filter(locality == "Quetzales") %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-")) %>%
+  group_by(path) %>%
+  summarise(count = n(), .groups = "drop")
+
+# Plot sunburst
+sunburst(tabla_sunburst_Quetzales, count = TRUE)
+```
+
+
+## Costa Rica - Baru
+
+```{R}
+tabla_sunburst_Baru <- combined_data %>%
+  filter(locality == "Baru") %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-")) %>%
+  group_by(path) %>%
+  summarise(count = n(), .groups = "drop")
+
+# Plot sunburst
+sunburst(tabla_sunburst_Baru, count = TRUE)
+```
+
+## Panama - Barro Colorado Island
+
+```{R}
+tabla_sunburst_BarroColorado <- combined_data %>%
+  filter(locality == "BarroColorado") %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-")) %>%
+  group_by(path) %>%
+  summarise(count = n(), .groups = "drop")
+
+# Plot sunburst
+sunburst(tabla_sunburst_BarroColorado, count = TRUE)
+```
+
+
+## Ecuador - Galapagos
+
+```{R}
+tabla_sunburst_Galapagos <- combined_data %>%
+  filter(locality == "Galapagos") %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-")) %>%
+  group_by(path) %>%
+  summarise(count = n(), .groups = "drop")
+
+# Plot sunburst
+sunburst(tabla_sunburst_Galapagos, count = TRUE)
+```
+
+
+## Ecuador - CerroBlanco
+
+```{R}
+tabla_sunburst_CerroBlanco <- combined_data %>%
+  filter(locality == "CerroBlanco") %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-")) %>%
+  group_by(path) %>%
+  summarise(count = n(), .groups = "drop")
+
+# Plot sunburst
+sunburst(tabla_sunburst_CerroBlanco, count = TRUE)
+```
+
+
+## Ecuador - Mashpi
+
+```{R}
+tabla_sunburst_Mashpi <- combined_data %>%
+  filter(locality == "Mashpi") %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-")) %>%
+  group_by(path) %>%
+  summarise(count = n(), .groups = "drop")
+
+# Plot sunburst
+sunburst(tabla_sunburst_Mashpi, count = TRUE)
+```
+
+
+
+## Ecuador - Pululahua
+
+```{R}
+tabla_sunburst_Pululahua <- combined_data %>%
+  filter(locality == "Pululahua") %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-")) %>%
+  group_by(path) %>%
+  summarise(count = n(), .groups = "drop")
+
+# Plot sunburst
+sunburst(tabla_sunburst_Pululahua, count = TRUE)
+```
+
+
+
+## Ecuador - Paluguillo
+
+```{R}
+tabla_sunburst_Paluguillo <- combined_data %>%
+  filter(locality == "Paluguillo") %>%
+  mutate(path = paste(kingdom, phylum, class, order, family, genus, species, sep = "-")) %>%
+  group_by(path) %>%
+  summarise(count = n(), .groups = "drop")
+
+# Plot sunburst
+sunburst(tabla_sunburst_Paluguillo, count = TRUE)
+```
+
+
+
+
+
+
+
+
