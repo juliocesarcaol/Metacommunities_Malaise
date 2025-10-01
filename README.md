@@ -26,3 +26,5 @@ The pipeline is designed for biodiversity research in Ecuador, Costa Rica, and P
     `viridis`, `ggsci`, `plotly`, `sunburstR`, `vegan`, `tibble`
 
 ---
+## Supplemenatry Sunbursts are available here 
+https://juliocesarcaol.github.io/Metacommunities_Malaise/Supplementary/Sunburst.html 
