@@ -52,7 +52,7 @@ tabla_sunburst_IslaCocos <- combined_data %>%
 sunburst(tabla_sunburst_IslaCocos, count = TRUE)
 ```
 
-## Costa Rica - Guancaste
+## Costa Rica - Guanacaste
 
 ```{R}
 tabla_sunburst_Guanacaste <- combined_data %>%
